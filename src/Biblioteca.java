@@ -1,21 +1,22 @@
 import java.util.ArrayList;
 
 public class Biblioteca {
-    private ArrayList<Livro> livros = new ArrayList<>();// criando um array de objetos da classe Livro
+    private ArrayList<Livro> livrosArray = new ArrayList<>();// criando um array de objetos da classe Livro
     private ArrayList<Autor> autores = new ArrayList<>();
     private ArrayList<Cliente> clientes = new ArrayList<>();
     private ArrayList<Emprestimo> emprestimos = new ArrayList<>();
 
 
     public Boolean temLivro(){
-        if (livros.isEmpty()){
+        if (livrosArray.isEmpty()){
             return false;
         }
         return true;
     }
     public void listaTodosOsLivros(){
-        for (Livro livro : livros) {
-            System.out.println("Livro: " + livro + "\n disponível?" +livro.disponivel);
+        for (int i = 0; i < livrosArray.size(); i++) {
+            Livro livro = livrosArray.get(i);
+            System.out.println(livro.titulo);
         }
     }
     public void listaClientes(){
@@ -36,5 +37,9 @@ public class Biblioteca {
 
     public boolean verificaSeEmprestimoTemCoisa(){
        return  emprestimos.isEmpty() ? false: true;
+    }
+
+    public void adicionarLivro(Livro livro){
+        livrosArray.add(livro);
     }
 }

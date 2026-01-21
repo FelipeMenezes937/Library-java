@@ -37,13 +37,5 @@ public class Livro {
         }
     }
 
-    void listaLivros(){
-        if(todosLivros.size()>0){
-            for (int i = 0; i < todosLivros.size(); i++) {
-                System.out.println(i + 1 + " - " + todosLivros.get(i).titulo);
-            }
-        }else{
-            System.out.println("Nenhum livro encontrado");
-        }
-    }
+
 }
