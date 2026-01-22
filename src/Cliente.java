@@ -8,5 +8,10 @@ public class Cliente {
         this.cpf = cpf;
         this.idade = idade;
     }
+    @Override
+    public String toString(){
+        return nome;
+    }
+
 
 }

@@ -7,29 +7,31 @@ public class Emprestimo {
     Date dataEmprestimo;
     Date dataDevolucao;
 
-    public Emprestimo(String nomeDoCliente, Object Livro) {
+    public Emprestimo(String nomeDoCliente, String nomeLivro, String todosOsLivros) {
 
 
-        if(Livro instanceof Livro && ((Livro) Livro).disponivel == true){
+        if(todosOsLivros.contains(nomeLivro)) {
             this.id = this.id+1;
             this.nomeCliente =  nomeDoCliente;
             System.out.println("Emprestimo criado com sucesso! id: "+ this.id);
-            ((Livro) Livro).mudaDisponivel("emprestei");
+
             this.Livro = Livro;
             this.dataEmprestimo = new Date();
 
         }else{
-            System.out.println("Livro já foi emprestado! :(");
+            System.out.println("Livro já foi emprestado! ou indisponível :(");
         }
 
     }
 
-    public void devolver(Date  dataDevolucao, Object Livro, String nomeDoCliente) {
+//    public void devolver(Date  dataDevolucao, Object Livro, String nomeDoCliente) {
+//
+//        if(Livro instanceof Livro && ((Livro) Livro).disponivel == false){
+//            ((Livro) Livro).mudaDisponivel(true);
+//        }else{
+//            System.out.println("livro não foi emprestado! :)");
+//        }
+//    }
 
-        if(Livro instanceof Livro && ((Livro) Livro).disponivel == false){
-            ((Livro) Livro).mudaDisponivel("devolver");
-        }else{
-            System.out.println("livro não foi emprestado! :)");
-        }
-    }
+
 }

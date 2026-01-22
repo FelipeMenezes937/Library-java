@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -40,38 +41,50 @@ public class Main {
                 input.nextLine();
                 String nomeCliente = input.nextLine();
                 System.out.println("Digite cpf do cliente: ");
-
                 String cpfCliente = input.nextLine();
                 System.out.println("nome do cliente: " + nomeCliente + "\n cpf:" + cpfCliente);
                 Cliente cliente = new Cliente(nomeCliente, cpfCliente, 19);
-
+                biblioteca.adicionarCliente(cliente);
                 System.out.println("cliente cadastrado!");
                 break;
             case 3:
                 if (biblioteca.temLivro()) {
                     System.out.println("<---CADASTRO DE EMPRESTIMOS--->");
-                    System.out.println("nome do cliente que deseja realiza o emprestimo: ");
+                    System.out.println("clientes cadastrados: ");
+                    biblioteca.listaClientes();
+                    System.out.println("\nnome do cliente que deseja realiza o emprestimo: ");
+                    input.nextLine();
                     String nomeClienteEmprestimo = input.nextLine();
+                    System.out.println(nomeClienteEmprestimo);
+                    if(!biblioteca.clienteEncontrado(nomeClienteEmprestimo)){
+                        System.out.println("cliente não cadastrado!");
+                        break;
+                    }
+
+                    System.out.println("livros cadastrados: ");
+                    String todosOsLivros = biblioteca.listaTodosOsLivros();
+
                     System.out.println("qual livro a ser emprestado?");
                     String nomeLivroEmprestimo = input.nextLine();
-                    Emprestimo emprestimo = new Emprestimo(nomeClienteEmprestimo, nomeLivroEmprestimo);
-                    break;
+
+                    Emprestimo emprestimo = new Emprestimo(nomeClienteEmprestimo, nomeLivroEmprestimo,todosOsLivros);
+
+                    biblioteca.adicionaEmprestimo(emprestimo);
+                    System.out.println("emprestimo realizado com sucesso!");
                 }else{
                     System.out.println("sem livros disponíveis :(");
-                    break;
                 }
+                break;
             case 4:
-                if (biblioteca.verificaSeEmprestimoTemCoisa()){
 
-                }
             case 5:
                 System.out.println("LIVROS");
                 biblioteca.listaTodosOsLivros();
 
-                System.out.println("CLIENTES");
+                System.out.println("\nCLIENTES");
                 biblioteca.listaClientes();
 
-                System.out.println("AUTORES");
+                System.out.println("\nAUTORES");
                 biblioteca.listaAutores();
 
                 break;
@@ -80,7 +93,7 @@ public class Main {
                 main();
         }
 
-        System.out.println("\nDeseja continuar? 1.sim \n 2.não");
+        System.out.println("\nDeseja continuar? \n1.sim \n2.não");
         int continuar = input.nextInt();
         if (continuar == 1) {
             main();

@@ -29,13 +29,16 @@ public class Livro {
 
     }
     // mudando a disponibilidade apartir dos emprestimos
-    void mudaDisponivel(String condicao) {
-        if (condicao == "emprestei") {
+    void mudaDisponivel(boolean condicao) {
+        if (condicao == true) {
             this.disponivel = false;
         } else {
             this.disponivel = true;
         }
     }
 
-
+    @Override
+    public String toString(){
+        return titulo;
+    }
 }
